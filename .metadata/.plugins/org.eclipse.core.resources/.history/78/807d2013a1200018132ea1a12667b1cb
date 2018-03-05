@@ -1,0 +1,10 @@
+package ace.ucv.ro;
+
+public class Producer extends Thread {
+
+	@Override
+	public void run() {
+
+	}
+
+}

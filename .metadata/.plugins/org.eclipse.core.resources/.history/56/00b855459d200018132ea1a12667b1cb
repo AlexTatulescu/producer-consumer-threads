@@ -1,0 +1,12 @@
+package ace.ucv.ro;
+
+import java.util.LinkedList;
+
+public class Simulation {
+	private static final int CAPACITY = 2;
+	private static LinkedList<Integer> queue = new LinkedList<Integer>();
+	private static
+	public static void main(String[] args) {
+		
+	}
+}

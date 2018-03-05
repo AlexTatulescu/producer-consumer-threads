@@ -1,0 +1,36 @@
+package ace.ucv.ro;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Simulation {
+	private static final int CAPACITY = 2;
+	private static LinkedList<Integer> queue = new LinkedList<Integer>();
+	private static Lock lock = new ReentrantLock();
+	private static Condition notEmpty = lock.newCondition();
+	private static Condition notFull = lock.newCondition();
+	
+	public static void main(String[] args) {
+		
+		System.out.println("Please insert the number of threads." + "/n");
+		Scanner in = new Scanner(System.in);
+		int nrThreads = in.nextInt();
+		in.close();
+		
+		Producer[] producers = new Producer[nrThreads];
+		Consumer[] consumers = new Consumer[nrThreads];
+		
+		for(int i = 0; i < nrThreads; i++) {
+			producers[i] = new Producer();
+			consumers[i] = new Consumer();
+		}
+		
+		for(int i = 0; i < nrThreads; i++) {
+			producers[i].run();
+			consumers[i].run();
+		}
+	}
+}

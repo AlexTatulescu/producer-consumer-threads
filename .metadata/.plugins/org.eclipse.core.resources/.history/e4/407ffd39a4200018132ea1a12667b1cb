@@ -1,0 +1,30 @@
+package ace.ucv.ro;
+
+public class Consumer extends Thread {
+	private int consumerId;
+
+	public Consumer(int consumerId) {
+		this.consumerId = consumerId;
+	}
+
+	@Override
+	public void run() {
+
+	}
+	
+	private void consume() {
+		Simulation.lock.lock();
+		try {
+			while (Simulation.queue.size() == Simulation.CAPACITY) {
+				System.out.println("Queue is full.");
+				Simulation.notFull.await();
+			}
+			Simulation.queue.offer(threadId);
+			Simulation.notEmpty.signal();
+		} catch (InterruptedException ie) {
+			System.out.println(ie.getMessage());
+		} finally {
+			Simulation.lock.unlock();
+		}
+	}
+}

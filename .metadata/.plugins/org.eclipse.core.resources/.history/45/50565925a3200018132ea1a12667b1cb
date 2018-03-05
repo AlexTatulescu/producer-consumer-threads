@@ -1,0 +1,30 @@
+package ace.ucv.ro;
+
+public class Producer extends Thread {
+	
+	private int threadId;
+
+	public Producer(int threadId) {
+		this.threadId = threadId;
+	}
+
+	@Override
+	public void run() {
+
+	}
+	
+	public void produce() {
+		Simulation.lock.lock();
+		try {
+			while(Simulation.queue.size() == Simulation.CAPACITY) {
+				System.out.println("Queue is full.");
+				Simulation.notFull.await();
+			}
+			Simulation.queue.offer(threadId);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+	}
+}

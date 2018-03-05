@@ -1,0 +1,20 @@
+package ace.ucv.ro;
+
+public class Producer extends Thread {
+
+	@Override
+	public void run() {
+
+	}
+	
+	public void produce() {
+		Simulation.lock.lock();
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+	}
+}

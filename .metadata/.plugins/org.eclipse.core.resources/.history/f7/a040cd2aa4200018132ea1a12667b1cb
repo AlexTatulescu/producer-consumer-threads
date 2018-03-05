@@ -1,0 +1,13 @@
+package ace.ucv.ro;
+
+public class Consumer extends Thread {
+
+	@Override
+	public void run() {
+
+	}
+	
+	private void consume() {
+		
+	}
+}
